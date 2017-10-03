@@ -1,0 +1,21 @@
+#Auth to the proxy
+"Auth Proxy"
+$webclient=New-Object System.Net.WebClient
+$creds=Get-Credential
+$webclient.Proxy.Credentials=$creds
+
+#login to the Azure tenant
+"Connect AzureRM"
+Login-AzureRmAccount
+
+#login to the Azure tenant
+"Connect AzureAD"
+Connect-AzureAD
+
+
+#Connect to Azure AD environment
+"Connect MSO"
+Import-Module MSOnline
+$Cred = Get-Credential
+Connect-MSOLService –credential $Cred
+
